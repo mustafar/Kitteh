@@ -3,9 +3,10 @@
   , "version": "0.0.1"
   , "private": true
   , "dependencies": {
-     "pg": "0.6.15"
-    , "express": "latest"
+      "express": "latest"
     , "jade": ">= 0.0.1"
+    , "jquery": "latest"
+    , "mongojs": "latest"
     , "canvas": "latest"
     , "kittydar": "latest"
   }
