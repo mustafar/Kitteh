@@ -13,8 +13,8 @@ var app = module.exports = express.createServer();
 
 // Configuration
 
-var connString = "tcp://postgres@localhost/apps",
-    dbClient = new pg.Client(connString);
+//var connString = "tcp://postgres@localhost/apps",
+//    dbClient = new pg.Client(connString);
 
 app.configure(function(){
   app.set('views', __dirname + '/views');
