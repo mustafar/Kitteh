@@ -21,9 +21,9 @@ exports.index = function (req, res) {
   $.getJSON(apiUrl, function(response){
     for (var i=0; i<response.data.length; i++) {
       var item = response.data[i];
-      /*db.kittehCollection.find({id: item.id}, function (err, docs) {
+      db.kittehCollection.find({id: item.id}, function (err, docs) {
         console.log(docs);
-      });*/
+      });
       console.log(item.id);
     }
   });
