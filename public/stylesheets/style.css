@@ -1,0 +1,29 @@
+body {
+  padding: 10px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+h1 {
+  border-bottom: 4px solid #000;
+  margin: 0 0 50px;
+  padding: 20px 0;
+}
+h1 a {
+  float: right;
+  color: #000;
+  text-decoration: none;
+}
+
+#toyList ul {
+  font-size: 18px;
+}
+
+.sortviz-container {
+  height: 600px;
+  width: 900px; 
+}
+
