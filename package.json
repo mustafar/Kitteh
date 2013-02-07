@@ -1,16 +1,19 @@
 {
-    "name": "JS-Toys"
-  , "version": "0.0.1"
-  , "private": true
-  , "dependencies": {
-      "express": "latest"
-    , "jade": ">= 0.0.1"
-    , "jquery": "latest"
-    , "mongojs": "latest"
-    , "canvas": "latest"
-    , "kittydar": "latest"
-  }
-  , "engines": {
+  "name": "Kitteh",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "express": "latest",
+    "jade": ">= 0.0.1",
+    "jquery": "latest",
+    "mongojs": "latest",
+    "canvas": "git://github.com/elspoono/node-canvas-heroku.git",
+    "kittydar": "latest"
+  },
+  "devDependencies": {
+    "canvas": "latest"
+  },
+  "engines": {
     "node": "0.8.x",
     "npm": "1.1.x"
   }
