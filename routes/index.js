@@ -12,12 +12,10 @@ exports.index = function (req, res) {
     apiUrl = 'https://api.instagram.com/v1/tags/kitty/media/recent?client_id=' + clientId;
 
   // set up database
-  var db = Mongojs(dbName, [collectionName]);
+  var db = Mongojs(process.env.MONGOHQ_URL || dbName, [collectionName]);
 
   // fetch kitteh
-  console.log(apiUrl);
   $.getJSON(apiUrl, function(response){
-    console.log(response);
     var random = Math.floor(Math.random() * (response.data.length + 1)),
         item = response.data[random];
     kitteh = {
