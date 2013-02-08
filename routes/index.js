@@ -15,7 +15,9 @@ exports.index = function (req, res) {
   var db = Mongojs(dbName, [collectionName]);
 
   // fetch kitteh
+  console.log(apiUrl);
   $.getJSON(apiUrl, function(response){
+    console.log(response);
     var random = Math.floor(Math.random() * (response.data.length + 1)),
         item = response.data[random];
     kitteh = {
