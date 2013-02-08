@@ -4,14 +4,11 @@
   "private": true,
   "dependencies": {
     "express": "latest",
-    "jade": ">= 0.0.1",
+    "jade": "*",
+    "stylus": "*",
+    "nib": "*",
     "jquery": "latest",
-    "mongojs": "latest",
-    "canvas-heroku": "latest",
-    "kittydar": "latest"
-  },
-  "devDependencies": {
-    "canvas": "latest"
+    "mongojs": "latest"
   },
   "engines": {
     "node": "0.8.x",
