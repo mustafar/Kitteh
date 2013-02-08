@@ -1,5 +1,6 @@
 // Module dependencies.
 var express = require('express'),
+  port = process.env.PORT || 2345,
   stylus = require('stylus'),
   nib = require('nib'),
   routes = require('./routes');
@@ -43,5 +44,5 @@ app.configure('production', function(){
 app.get('/', routes.index);
 
 // Startup
-app.listen(2345);
-console.log("Express server listening on port %d in %s mode", '2345', app.settings.env);
+app.listen(port);
+console.log("Express server listening on port %d in %s mode", port, app.settings.env);
