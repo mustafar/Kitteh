@@ -1,2 +1,5 @@
 *.swp
+*.jpp
+*.jpep
+*.png
 node_modules

@@ -15,20 +15,25 @@ block content
         kittehSlides = [];
     kittehs = kittehs.splice (0, 50);
     for (var i=0; i<kittehs.length; i++) {
+      console.log(kittehs[i].timeAdded);
       kittehSlides.push ({
         'url': kittehs[i].url,
         'link_to': kittehs[i].link
       })
     }
-    $('#kitteh-slideshow').rsfSlideshow({
-      autostart: false,
-      slides: kittehSlides,
-      transition: 500,
-      effect: 'fade',
-      interval: 5,
-      controls: {
-        previousSlide: {auto: true},
-        nextSlide: {auto: true},
-      }
+
+    $(document).ready(function () {
+      $('#kitteh-slideshow').rsfSlideshow({
+        slides: kittehSlides,
+        autostart: false,
+        transition: 500,
+        effect: 'fade',
+        loop: false,
+        controls: {
+          previousSlide: {auto: true},
+          nextSlide: {auto: true},
+        }
+      });
+      $('.rs-controls .rs-next').trigger('click');
+      console.log (kittehSlides);
     });
-    console.log (kittehSlides);

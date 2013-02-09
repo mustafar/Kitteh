@@ -34,9 +34,7 @@ exports.index = function (req, res) {
         'isDeleted': false
       };
 
-      db[collectionName].find ({id: kitteh.id})
-        .limit (100)
-        .sort ({_id: -1}, function (err, docs) {
+      db[collectionName].find ({id: kitteh.id}, function (err, docs) {
         if (err) throw err;
 
        // kitteh not found. add it
@@ -68,6 +66,20 @@ exports.index = function (req, res) {
             }
           }
 
+          // overrides
+          var negativeCats = [
+            'hello',
+            'hellokitty'],
+            numFound = 0;
+          for (var i=0; i<negativeCats.length; i++) {
+            if (item.tags.indexOf (negativeCats[i]) >= 0) {
+              numFound += 1;
+            }
+          }
+          if (numFound > 0) {
+            doAdd = false;
+          }
+
           // add to kitty-db
           if (doAdd) {
             db[collectionName].save (kitteh);
@@ -82,7 +94,9 @@ exports.index = function (req, res) {
   }
 
   // send to view
-  db[collectionName].find ({}, function (err, docs) {
+  db[collectionName].find ({})
+    .limit (100)
+    .sort ({timeAdded: -1}, function (err, docs) {
     res.render ('index.jade', {
       'title': 'Kitteh',
       'kittehs': docs
