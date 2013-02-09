@@ -18,12 +18,10 @@ h1 a {
   text-decoration: none;
 }
 
-#toyList ul {
-  font-size: 18px;
+footer {
+  float: right;
 }
 
-.sortviz-container {
-  height: 600px;
-  width: 900px; 
+.div-break {
+  clear: both;
 }
-

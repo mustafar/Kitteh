@@ -3,14 +3,12 @@ html
   head
     title #{title}
     link(rel='stylesheet', href='/stylesheets/style.css')
+    script(src='/javascripts/jquery-1.9.1.min.js')
   body
     header
       h1 #{title}
     .container
-      .main-content
-        block content
+      block content
     footer
       p Running on node with Express, Jade and Stylus
-    script(type='text/javascript')
-      console.log('hiya');
 

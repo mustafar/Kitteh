@@ -1,0 +1,40 @@
+.rs-slideshow {
+    border: 12px solid #444;
+    width: 615px;
+    height: 615px;
+    margin: 24px auto;
+    overflow: hidden;
+    position: relative;
+}
+ 
+.rs-slideshow .slide-container {
+    background-color: #444;
+    height: 100%;
+    left: 0;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+ 
+.rs-slideshow .slide-container img {
+    position: absolute;
+}
+ 
+.rs-controls {
+  width: 615px;
+  margin: 24px auto;
+}
+
+.rs-controls .rs-next {
+  float: right;
+}
+
+.rs-controls .rs-prev {
+  float: left;
+}
+
+/*    Hide the slide data container    */
+.rs-slideshow .slides {
+    display: none;
+}
