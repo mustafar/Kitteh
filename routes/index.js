@@ -12,7 +12,7 @@ exports.index = function (req, res) {
   NConf.load ();
 
   // set up instagram api
-  var clientId = NConf.get('instagram_client_id'),
+  var clientId = process.env.INSTAGRAM_CLIENT_ID || NConf.get('instagram_client_id'),
       apiUrl = 'https://api.instagram.com/v1/tags/catsofinstagram/media/recent?client_id=' + clientId;
 
   // set up database
@@ -137,7 +137,7 @@ exports.random = function (req, res) {
   NConf.load ();
 
   // set up instagram api
-  var clientId = NConf.get('instagram_client_id'),
+  var clientId = process.env.INSTAGRAM_CLIENT_ID || NConf.get('instagram_client_id'),
       apiUrl = 'https://api.instagram.com/v1/tags/catsofinstagram/media/recent?client_id=' + clientId;
 
   db[collectionName].find ({isDeleted: false})
