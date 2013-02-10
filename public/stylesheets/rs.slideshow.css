@@ -1,5 +1,6 @@
 .rs-slideshow {
     border: 12px solid #444;
+    border-radius: 15px;
     width: 615px;
     height: 615px;
     margin: 24px auto;
@@ -24,6 +25,19 @@
 .rs-controls {
   width: 615px;
   margin: 24px auto;
+}
+
+.rs-controls a {
+  background-color: rgb(220,220,220);
+  border: 1px solid #ddd;
+  color: #444;
+  display: block;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 1.1em;
+  padding: 3px 5px;
+  text-decoration: none;
 }
 
 .rs-controls .rs-next {

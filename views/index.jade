@@ -14,12 +14,14 @@ block content
     var kittehs = !{JSON.stringify (kittehs)},
         kittehSlides = [];
     kittehs = kittehs.splice (0, 50);
+    kittehSlides.push ({
+      'url': '/img/more_soon.png'
+    });
     for (var i=0; i<kittehs.length; i++) {
-      console.log(kittehs[i].timeAdded);
       kittehSlides.push ({
         'url': kittehs[i].url,
         'link_to': kittehs[i].link
-      })
+      });
     }
 
     $(document).ready(function () {
@@ -35,5 +37,4 @@ block content
         }
       });
       $('.rs-controls .rs-next').trigger('click');
-      console.log (kittehSlides);
     });

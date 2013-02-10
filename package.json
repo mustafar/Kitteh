@@ -4,11 +4,10 @@
   "private": true,
   "dependencies": {
     "express": "latest",
-    "jade": "*",
-    "stylus": "*",
-    "nib": "*",
+    "jade": "latest",
     "jquery": "latest",
-    "mongojs": "latest"
+    "mongojs": "latest",
+    "nconf": "latest"
   },
   "engines": {
     "node": "0.8.x",

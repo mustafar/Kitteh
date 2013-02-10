@@ -1,0 +1,21 @@
+extends layout
+
+block content
+
+  #kitteh-slideshow.rs-slideshow
+    #frame.slide-container
+  div.div-break
+
+  //- ReallySimple Slideshow
+  link(rel='stylesheet', href='/stylesheets/rs.slideshow.css')
+  script(src='/javascripts/jquery.rs.slideshow.min.js')
+
+  script (type='text/javascript')
+    var kitteh = !{JSON.stringify (kitteh)},
+        anchor = document.createElement('a'),
+        image = document.createElement('image');
+    anchor.href = kitteh.link;
+    image.src = kitteh.url;
+    $(anchor).append(image);
+    $('#frame').append(anchor);
+ 

@@ -2,13 +2,41 @@
 html
   head
     title #{title}
+
+    //- custom fonts
+    //link(rel='stylesheet', href='http://fonts.googleapis.com/css?family=Bangers')
+
+    //-  base stylesheet
     link(rel='stylesheet', href='/stylesheets/style.css')
+
+    //- jquery
     script(src='/javascripts/jquery-1.9.1.min.js')
+
   body
     header
-      h1 #{title}
+      h1
+        div.page-logo
+          a(href="/")
+            img.logo-img(src='/img/kitteh_logo.png')
+        div.page-title
+          a(href="/", style="padding: 0 15px 0 5px") #{title}
+        div.button-container
+          #rnd-kitteh-button.button-css.green Random
+        div.div-break
     .container
       block content
     footer
-      p Running on node with Express, Jade and Stylus
+      div.social-container
+        a(href="http://twitter.com/mustafarizvi", target="_blank")
+          div.social-logo.twitter-logo
+        a(href="http://instagram.com/mustafarizvi", target="_blank")
+          div.social-logo.instagram-logo
+      div.div-break
+
+  script (type='text/javascript')
+    $(document).ready(function () {
+      $('#rnd-kitteh-button').click (function() {
+        window.location = '/rnd';
+      });
+    });
 

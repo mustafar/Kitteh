@@ -4,14 +4,21 @@
 
 exports.index = function (req, res) {
   var $ = require ('jquery'),
+      NConf = require ('nconf'),
       Mongojs = require ('mongojs');
-  var clientId = '2e0077af5c2b4aef81c5f4349ac1558d',
-      dbName = 'apps',
-      collectionName = 'kitteh',
-      apiUrl = 'https://api.instagram.com/v1/tags/kitty/media/recent?client_id=' + clientId;
+
+  // nconf setup
+  NConf.use ('file', {file: 'config.json' });
+  NConf.load ();
+
+  // set up instagram api
+  var clientId = NConf.get('instagram_client_id'),
+      apiUrl = 'https://api.instagram.com/v1/tags/catsofinstagram/media/recent?client_id=' + clientId;
 
   // set up database
-  var db = Mongojs (process.env.MONGOHQ_URL || dbName, [collectionName]);
+  var dbName = 'apps',
+      collectionName = 'kitteh',
+      db = Mongojs (process.env.MONGOHQ_URL || dbName, [collectionName]);
 
   // fetch kitteh
   var doFetchKitteh = true;
@@ -31,11 +38,15 @@ exports.index = function (req, res) {
         'timeAdded': Math.round ((new Date ()).getTime () / 1000),
         'link': item['link'],
         'url': item['images']['standard_resolution']['url'],
+        'randomNumber': Math.random(),
         'isDeleted': false
       };
 
       db[collectionName].find ({id: kitteh.id}, function (err, docs) {
-        if (err) throw err;
+        if (err) {
+          console.log (err);
+          return;
+        }
 
        // kitteh not found. add it
         if (docs.length === 0) {
@@ -97,10 +108,44 @@ exports.index = function (req, res) {
   db[collectionName].find ({})
     .limit (100)
     .sort ({timeAdded: -1}, function (err, docs) {
-    res.render ('index.jade', {
-      'title': 'Kitteh',
+    res.render ('index', {
+      'title': 'Kitteh!!',
       'kittehs': docs
     });
   });
 
 };
+
+exports.random = function (req, res) {
+  var $ = require ('jquery'),
+      Mongojs = require ('mongojs');
+  var dbName = 'apps',
+      collectionName = 'kitteh';
+
+  // set up database
+  var db = Mongojs (process.env.MONGOHQ_URL || dbName, [collectionName]);
+
+  // send to view
+  var rand = Math.random()
+  db[collectionName].findOne ({randomNumber: {$gte : rand}}, function (err, doc) {
+    if (!doc) {
+      db[collectionName].findOne ({randomNumber: {$lte : rand}}, function (err, doc) {
+        if (!doc) {
+          doc = {};
+        }
+        res.render ('random', {
+          'title': 'Kitteh!!',
+          'kitteh': doc
+        });
+      });
+
+    } else {
+      res.render ('random', {
+        'title': 'Kitteh!!',
+        'kitteh': doc
+      });
+    }
+  });
+
+};
+

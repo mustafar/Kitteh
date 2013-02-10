@@ -1,14 +1,13 @@
 // Module dependencies.
 var express = require ('express'),
     port = process.env.PORT || 2345,
-    stylus = require ('stylus'),
-    nib = require ('nib'),
     routes = require ('./routes');
 
 var app = module.exports = express ();
 
 // Configuration
 app.configure (function (){
+  app.use(express.favicon(__dirname + '/public/img/favicon.ico')); 
   app.set ('views', __dirname + '/views');
   app.set ('view engine', 'jade');
   app.use (express.bodyParser ());
@@ -18,17 +17,8 @@ app.configure (function (){
 });
 
 // View stuff
-function compile (str, path) {
-  return stylus (str)
-    .set ('filename', path)
-    .use (nib ())
-}
 app.set ('view engine', 'jade')
 app.use (express.logger ('dev'))
-app.use (stylus.middleware (
-      { src: __dirname + '/public'
-        , compile: compile
-      }))
 app.use (express.static (__dirname + '/public'))
 
 app.configure ('development', function (){
@@ -41,6 +31,7 @@ app.configure ('production', function (){
 
 // Routes
 app.get ('/', routes.index);
+app.get ('/rnd', routes.random);
 
 // Startup
 app.listen (port);
