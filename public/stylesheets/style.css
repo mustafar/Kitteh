@@ -60,10 +60,10 @@ footer {
   cursor: pointer;
 }
 .twitter-logo {
-  background: url("/img/social_icons.png") 270px 0;
+  background: url("https://dl.dropbox.com/s/retljdvsxe2m50u/social_icons.png") 270px 0;
 }
 .instagram-logo {
-  background: url("/img/social_icons.png") 132px 0;
+  background: url("https://dl.dropbox.com/s/retljdvsxe2m50u/social_icons.png") 132px 0;
 }
 
 footer .social-container {

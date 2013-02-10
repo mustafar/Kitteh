@@ -2,4 +2,5 @@
 *.jpp
 *.jpep
 *.png
+.DS_Store
 node_modules
