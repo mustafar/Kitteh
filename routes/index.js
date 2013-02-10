@@ -139,7 +139,6 @@ exports.random = function (req, res) {
   // set up instagram api
   var clientId = process.env.INSTAGRAM_CLIENT_ID || NConf.get('instagram_client_id'),
       apiUrl = 'https://api.instagram.com/v1/tags/catsofinstagram/media/recent?client_id=' + clientId;
-  console.log(apiUrl);
 
   db[collectionName].find ({isDeleted: false})
     .limit (100, function (err, docs) {
