@@ -105,7 +105,7 @@ exports.index = function (req, res) {
   }
 
   // send to view
-  db[collectionName].find ({})
+  db[collectionName].find ({isDeleted: false})
     .limit (100)
     .sort ({timeAdded: -1}, function (err, docs) {
     res.render ('index', {
@@ -115,6 +115,10 @@ exports.index = function (req, res) {
   });
 
 };
+
+/*
+ * GET RANDOM KITTEH!!
+ */
 
 exports.random = function (req, res) {
   var $ = require ('jquery'),
@@ -148,4 +152,26 @@ exports.random = function (req, res) {
   });
 
 };
+
+/*
+ * GET KITTEH!!
+ */
+
+exports.del = function (req, res) {
+  var $ = require ('jquery'),
+      Mongojs = require ('mongojs');
+  var dbName = 'apps',
+      collectionName = 'kitteh';
+
+  // set up database
+  var db = Mongojs (process.env.MONGOHQ_URL || dbName, [collectionName]);
+
+  db[collectionName].update({id: req.params.id}, 
+      {$set: {isDeleted: true}});
+
+  // render json
+  res.json({kittehId: req.params.id, status: 'OK'});
+  
+};
+
 

@@ -20,6 +20,7 @@ block content
     for (var i=0; i<kittehs.length; i++) {
       kittehSlides.push ({
         'url': kittehs[i].url,
+        'kittehId': kittehs[i].id,
         'link_to': kittehs[i].link
       });
     }
@@ -37,4 +38,32 @@ block content
         }
       });
       $('.rs-controls .rs-next').trigger('click');
+
+      // delete this kitteh!!
+      var code = [];
+      $(document.body).keyup (function (event){
+        var keyCode = event.which? event.which: 0, key;
+        var codeStr;
+        if (keyCode >= 48 && keyCode <= 90) {
+          code.push(keyCode);
+          if (code.length > 4) {
+            code = code.slice(code.length - 4);
+          }
+          codeStr = code.join('');
+          if (codeStr == '82777584') {
+            var key = $('#kitteh-slideshow').rsfSlideshow ('currentSlideKey'),
+                data =  $('#kitteh-slideshow').rsfSlideshow ('getSlideData', key);
+            if (data && data.kittehId) {
+              console.log(data);
+              $.ajax('/del/' + data.kittehId, {
+                  type: 'GET',
+                  dataType: 'json',
+                  success: function(data) {},
+                  error  : function() {}
+              });
+            }
+          }
+        }
+      });
+
     });

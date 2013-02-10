@@ -32,6 +32,7 @@ app.configure ('production', function (){
 // Routes
 app.get ('/', routes.index);
 app.get ('/rnd', routes.random);
+app.get ('/del/:id', routes.del);
 
 // Startup
 app.listen (port);
