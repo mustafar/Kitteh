@@ -45,6 +45,8 @@ exports.index = function (req, res) {
       db[collectionName].find ({id: kitteh.id}, function (err, docs) {
         if (err) {
           console.log (err);
+          // render json response
+          res.json({message: 'Server Error. Sorry :(', status: 'FAIL'});
           return;
         }
 
@@ -122,6 +124,7 @@ exports.index = function (req, res) {
 
 exports.random = function (req, res) {
   var $ = require ('jquery'),
+      NConf = require ('nconf'),
       Mongojs = require ('mongojs');
   var dbName = 'apps',
       collectionName = 'kitteh';
@@ -129,8 +132,31 @@ exports.random = function (req, res) {
   // set up database
   var db = Mongojs (process.env.MONGOHQ_URL || dbName, [collectionName]);
 
+  // nconf setup
+  NConf.use ('file', {file: 'config.json' });
+  NConf.load ();
+
+  // set up instagram api
+  var clientId = NConf.get('instagram_client_id'),
+      apiUrl = 'https://api.instagram.com/v1/tags/catsofinstagram/media/recent?client_id=' + clientId;
+
+  db[collectionName].find ({isDeleted: false})
+    .limit (100, function (err, docs) {
+    if (err || docs.length == 0) {
+      console.log (err);
+      // render json response
+      res.json({message: 'Server Error. Sorry :(', status: 'FAIL'});
+      return;
+    }
+    var random = Math.floor (Math.random() * docs.length);
+    res.render ('random', {
+      'title': 'Kitteh!!',
+      'kitteh': docs[random]
+    });
+  });
+
   // send to view
-  var rand = Math.random()
+  /*var rand = Math.random();
   db[collectionName].findOne ({randomNumber: {$gte : rand}}, function (err, doc) {
     if (!doc) {
       db[collectionName].findOne ({randomNumber: {$lte : rand}}, function (err, doc) {
@@ -149,12 +175,12 @@ exports.random = function (req, res) {
         'kitteh': doc
       });
     }
-  });
+  });*/
 
 };
 
 /*
- * GET KITTEH!!
+ * DELETE KITTEH!!
  */
 
 exports.del = function (req, res) {
@@ -170,7 +196,11 @@ exports.del = function (req, res) {
       {$set: {isDeleted: true}});
 
   // render json
-  res.json({kittehId: req.params.id, status: 'OK'});
+  res.json({
+    kittehId: req.params.id, 
+    message: 'Deleted',
+    status: 'OK'
+  });
   
 };
 

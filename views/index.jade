@@ -54,7 +54,6 @@ block content
             var key = $('#kitteh-slideshow').rsfSlideshow ('currentSlideKey'),
                 data =  $('#kitteh-slideshow').rsfSlideshow ('getSlideData', key);
             if (data && data.kittehId) {
-              console.log(data);
               $.ajax('/del/' + data.kittehId, {
                   type: 'GET',
                   dataType: 'json',
