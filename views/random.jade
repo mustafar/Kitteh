@@ -18,4 +18,29 @@ block content
     image.src = kitteh.url;
     $(anchor).append(image);
     $('#frame').append(anchor);
- 
+
+    $(document).ready(function () {
+      // delete this kitteh!!
+      var code = [];
+      $(document.body).keyup (function (event){
+        var keyCode = event.which? event.which: 0, key;
+        var codeStr;
+        if (keyCode >= 48 && keyCode <= 90) {
+          code.push(keyCode);
+          if (code.length > 4) {
+            code = code.slice(code.length - 4);
+          }
+          codeStr = code.join('');
+          if (codeStr == '82777584') {
+            if (kitteh && kitteh.id) {
+              $.ajax('/del/' + kitteh.id, {
+                  type: 'GET',
+                  dataType: 'json',
+                  success: function(data) {},
+                  error  : function() {}
+              });
+            }
+          }
+        }
+      });
+    }); 
