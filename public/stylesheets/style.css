@@ -29,13 +29,13 @@ body: before {
 
 .container {
   overflow: auto;
-  padding-bottom: 70px; /* footer height */
+  padding-bottom: 100px; /* footer height */
 }
 
 footer {
   position: relative;
-	margin-top: -70px; /* footer height */
-	height: 70px; /* footer height */
+	margin-top: -100px; /* footer height */
+	height: 100px; /* footer height */
 	clear: both;
 }
 
