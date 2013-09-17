@@ -1,7 +1,6 @@
 *.swp
 *.jpp
 *.jpep
-*.png
 .DS_Store
 config.json
 node_modules
