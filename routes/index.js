@@ -123,7 +123,7 @@ exports.index = function (req, res) {
 /*
  * GET RANDOM KITTEH!!
  */
-
+ 
 exports.random = function (req, res) {
   var $ = require ('jquery'),
       NConf = require ('nconf'),
@@ -144,41 +144,27 @@ exports.random = function (req, res) {
 
   db[collectionName].find ({isDeleted: false})
     .limit (100, function (err, docs) {
-    if (err || docs.length == 0) {
+    if (err || docs.length === 0) {
       console.log (err);
       // render json response
       res.json({message: 'Server Error. Sorry :(', status: 'FAIL'});
       return;
     }
     var random = Math.floor (Math.random() * docs.length);
-    res.render ('random', {
-      'title': 'Kitteh!!',
-      'kitteh': docs[random]
-    });
-  });
-
-  // send to view
-  /*var rand = Math.random();
-  db[collectionName].findOne ({randomNumber: {$gte : rand}}, function (err, doc) {
-    if (!doc) {
-      db[collectionName].findOne ({randomNumber: {$lte : rand}}, function (err, doc) {
-        if (!doc) {
-          doc = {};
-        }
-        res.render ('random', {
-          'title': 'Kitteh!!',
-          'kitteh': doc
-        });
+    var kitteh = docs[random];
+    if (req.query.isJson && req.query.isJson.toLowerCase() == 'true') {
+      res.json ({
+        'id': kitteh._id,
+        'link': kitteh.link,
+        'url': kitteh.url
       });
-
     } else {
       res.render ('random', {
         'title': 'Kitteh!!',
-        'kitteh': doc
+        'kitteh': kitteh
       });
     }
-  });*/
-
+  });
 };
 
 /*

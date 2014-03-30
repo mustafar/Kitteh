@@ -7,7 +7,7 @@ var app = module.exports = express ();
 
 // Configuration
 app.configure (function (){
-  app.use(express.favicon(__dirname + '/public/img/favicon.ico')); 
+  app.use(express.favicon(__dirname + '/public/img/favicon.ico'));
   app.set ('views', __dirname + '/views');
   app.set ('view engine', 'jade');
   app.use (express.bodyParser ());
@@ -22,11 +22,11 @@ app.use (express.logger ('dev'))
 app.use (express.static (__dirname + '/public'))
 
 app.configure ('development', function (){
-  app.use (express.errorHandler ({ dumpExceptions: true, showStack: true })); 
+  app.use (express.errorHandler ({ dumpExceptions: true, showStack: true }));
 });
 
 app.configure ('production', function (){
-  app.use (express.errorHandler ()); 
+  app.use (express.errorHandler ());
 });
 
 // Routes
