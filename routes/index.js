@@ -24,7 +24,9 @@ exports.index = function (req, res) {
   var doFetchKitteh = true;
   if (doFetchKitteh) {
 
-    $.getJSON (apiUrl, function (response){
+    $.ajax ({
+        url: apiUrl
+      }, function (response){
       var random = Math.floor (Math.random () * (response.data.length + 1)),
           item = response.data[random];
 
