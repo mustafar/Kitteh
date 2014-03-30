@@ -8,14 +8,14 @@ block content
 
   //- ReallySimple Slideshow
   link(rel='stylesheet', href='/stylesheets/rs.slideshow.css')
-  script(src='/javascripts/jquery.rs.slideshow.min.js')
 
-  script (type='text/javascript')
+  script.
     var kitteh = !{JSON.stringify (kitteh)},
         anchor = document.createElement('a'),
-        image = document.createElement('image');
+        image = document.createElement('img');
     anchor.href = kitteh.link;
-    image.src = kitteh.url;
+    $(image).attr("src", kitteh.url);
+    $(image).addClass('rsf-slideshow-image');
     $(anchor).append(image);
     $('#frame').append(anchor);
 
@@ -43,4 +43,4 @@ block content
           }
         }
       });
-    }); 
+    });

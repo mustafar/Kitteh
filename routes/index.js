@@ -192,16 +192,14 @@ exports.del = function (req, res) {
   // set up database
   var db = Mongojs (process.env.MONGOHQ_URL || dbName, [collectionName]);
 
-  db[collectionName].update({id: req.params.id}, 
+  db[collectionName].update({id: req.params.id},
       {$set: {isDeleted: true}});
 
   // render json
   res.json({
-    kittehId: req.params.id, 
+    kittehId: req.params.id,
     message: 'Deleted',
     status: 'OK'
   });
   
 };
-
-
